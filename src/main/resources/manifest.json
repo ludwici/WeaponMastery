@@ -1,0 +1,11 @@
+{
+  "Group": "com.ludwici",
+  "Name": "Weapon Mastery",
+  "Version": "1.0.0",
+  "Main": "com.ludwici.weaponmastery.WeaponMastery",
+  "Authors": [
+    {
+      "Name": "ludwici"
+    }
+  ]
+}
