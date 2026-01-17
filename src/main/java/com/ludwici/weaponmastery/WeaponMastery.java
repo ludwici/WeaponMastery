@@ -4,15 +4,22 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.ludwici.weaponmastery.commands.Command;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import com.ludwici.weaponmastery.events.KillEventSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class WeaponMastery extends JavaPlugin {
+    private static WeaponMastery instance;
     private ComponentType<EntityStore, MasteryComponent> masteryComponent;
 
     public WeaponMastery(@NonNullDecl JavaPluginInit init) {
         super(init);
+        instance = this;
+    }
+
+    public static WeaponMastery getInstance() {
+        return instance;
     }
 
     @Override

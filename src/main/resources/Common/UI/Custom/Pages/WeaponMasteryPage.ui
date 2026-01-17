@@ -1,0 +1,23 @@
+$C = "../Common.ui";
+$ME = "MasteryEntry.ui";
+
+Group {
+    Anchor: (Width: 500, Height: 600);
+    Background: #1a1a2e(0.95);
+    LayoutMode: Top;
+    Padding: (Full: 20);
+
+    $C.@TextField #WeaponIDInput {
+        Anchor: (Height: 35);
+        PlaceholderText: %weaponmastery.search.placeholder;
+    }
+
+    Group {
+        LayoutMode: Top;
+
+        Group #MasteryList {
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+        }
+    }
+}

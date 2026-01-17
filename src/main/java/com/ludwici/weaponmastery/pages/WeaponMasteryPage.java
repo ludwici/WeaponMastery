@@ -1,0 +1,59 @@
+package com.ludwici.weaponmastery.pages;
+
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
+import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
+import com.hypixel.hytale.server.core.inventory.ItemStack;
+import com.hypixel.hytale.server.core.ui.builder.EventData;
+import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
+import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.ludwici.weaponmastery.WeaponMastery;
+import com.ludwici.weaponmastery.components.MasteryComponent;
+import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
+
+import java.util.Map;
+
+public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEventData> {
+
+    public WeaponMasteryPage(@NonNullDecl PlayerRef playerRef) {
+        super(playerRef, CustomPageLifetime.CanDismiss, MasteryWeaponEventData.CODEC);
+    }
+
+    @Override
+    public void build(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl UICommandBuilder uiCommandBuilder, @NonNullDecl UIEventBuilder uiEventBuilder, @NonNullDecl Store<EntityStore> store) {
+        uiCommandBuilder.append("Pages/WeaponMasteryPage.ui");
+//        uiEventBuilder.addEventBinding(CustomUIEventBindingType.ValueChanged, "#WeaponIDInput", new EventData().append("@WeaponIDInput", "#WeaponIDInput.Value"));
+        uiCommandBuilder.clear("#MasteryList");
+        MasteryComponent masteryComponent = store.getComponent(ref, WeaponMastery.getInstance().getMasteryComponent());
+        if (masteryComponent == null) {
+            return;
+        }
+        int idx = 0;
+        ItemStack weapon;
+        String selector;
+        float value = 0;
+        for (Map.Entry<String, Integer> entry : masteryComponent.progress.entrySet()) {
+            weapon = new ItemStack(entry.getKey());
+            uiCommandBuilder.append("#MasteryList", "Pages/MasteryEntry.ui");
+            selector = "#MasteryList[" + idx + "] ";
+            uiCommandBuilder.set(selector + "#WeaponName.TextSpans", Message.translation(weapon.getItem().getTranslationKey()));
+            uiCommandBuilder.set(selector + "#WeaponItem.ItemId", entry.getKey());
+            value = (float) entry.getValue() / 500;
+            uiCommandBuilder.set(selector + "#MasteryProgress.Value", value);
+            uiCommandBuilder.set(selector + "#MasteryProgressTexture.Value", value);
+            uiCommandBuilder.set(selector + "#CurrentProgress.TextSpans", Message.raw(entry.getValue() + " / 500"));
+            idx++;
+        }
+    }
+
+    @Override
+    public void handleDataEvent(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl Store<EntityStore> store, @NonNullDecl MasteryWeaponEventData data) {
+//        String weaponId = data.weaponIDInput;
+//        playerRef.sendMessage(Message.raw(weaponId));
+    }
+}

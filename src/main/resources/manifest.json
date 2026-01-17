@@ -3,6 +3,7 @@
   "Name": "Weapon Mastery",
   "Version": "1.0.0",
   "Main": "com.ludwici.weaponmastery.WeaponMastery",
+  "IncludesAssetPack": true,
   "Authors": [
     {
       "Name": "ludwici"

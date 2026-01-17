@@ -11,7 +11,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import java.util.*;
 
 public class MasteryComponent implements Component<EntityStore> {
-    private Map<String, Integer> progress;
+    public Map<String, Integer> progress;
 
     public static final BuilderCodec<MasteryComponent> CODEC = BuilderCodec.builder(MasteryComponent.class, MasteryComponent::new)
             .append(new KeyedCodec<>("Progress", new ObjectMapCodec<>(

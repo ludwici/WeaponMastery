@@ -1,0 +1,48 @@
+Group {
+    Padding: (Full: 6);
+    Background: #000000(0.2);
+
+    Group {
+        LayoutMode: Left;
+
+        ItemSlot #WeaponItem {
+            Anchor: (Width: 64, Height: 64);
+            ShowQualityBackground: true;
+        }
+
+        Group {
+            Anchor: (Left: 4, Height: 64);
+
+            Group {
+                LayoutMode: Top;
+                Label #WeaponName {
+                    Anchor: (Height: 30);
+                    Style: (FontSize: 14, TextColor: #ffffff);
+                }
+            }
+
+            Group {
+                Background: "../Pages/Memories/MemoriesProgress/MemoriesBarBg.png";
+                Anchor: (Height: 22, Width: 300, Bottom: 2);
+                Padding: (Full: 4);
+
+                ProgressBar #MasteryProgress {
+                    BarTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarFill.png";
+                    EffectTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTipOfTheBar.png";
+                    EffectWidth: 70;
+                    EffectHeight: 22;
+                    EffectOffset: 52;
+                }
+
+                ProgressBar #MasteryProgressTexture {
+                    BarTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTexture.png";
+                }
+
+                Label #CurrentProgress {
+                    Anchor: (Height: 20, Width: 300, Bottom: -3);
+                    Style: (FontSize: 12, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center);
+                }
+            }
+        }
+    }
+}

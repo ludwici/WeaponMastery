@@ -70,7 +70,7 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         }
 
         String weaponId = weapon.getItemId();
-
+//        weapon.getItem().getTranslationKey()
         masteryComponent.addProgress(weaponId);
         String playerName = attacker.getDisplayName();
         Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
