@@ -16,8 +16,11 @@ import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
+import java.util.Random;
+
 public class KillEventSystem extends DeathSystems.OnDeathSystem {
     private final ComponentType<EntityStore, MasteryComponent> masteryComponentType;
+    private final Random random = new Random();
 
     public KillEventSystem(ComponentType<EntityStore, MasteryComponent> masteryComponent) {
         this.masteryComponentType = masteryComponent;
@@ -39,7 +42,6 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         if (!(source instanceof Damage.EntitySource entitySource)) {
             return;
         }
-
 
         Ref<EntityStore> sourceRef = entitySource.getRef();
         if (!sourceRef.isValid()) {
@@ -70,10 +72,20 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         }
 
         String weaponId = weapon.getItemId();
-//        weapon.getItem().getTranslationKey()
-        masteryComponent.addProgress(weaponId);
-        String playerName = attacker.getDisplayName();
-        Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
+        int maxProgressValue = MasteryComponent.MAX_PROGRESS_VALUE;
+        int currentProgress = masteryComponent.getProgress(weaponId);
+
+        if (currentProgress < maxProgressValue) {
+            double chance = (double) (maxProgressValue - currentProgress) / maxProgressValue;
+            double val = random.nextDouble(0.0, 1.0);
+            Universe.get().sendMessage(Message.raw("Шанс: " + chance + "/" + val));
+
+            if (val < chance) {
+                masteryComponent.addProgress(weaponId);
+                String playerName = attacker.getDisplayName();
+                Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
+            }
+        }
     }
 
     @NullableDecl

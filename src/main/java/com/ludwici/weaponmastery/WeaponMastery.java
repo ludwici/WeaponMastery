@@ -6,6 +6,7 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.ludwici.weaponmastery.commands.Command;
 import com.ludwici.weaponmastery.components.MasteryComponent;
+import com.ludwici.weaponmastery.events.ApplyDamageSystem;
 import com.ludwici.weaponmastery.events.KillEventSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -30,6 +31,7 @@ public class WeaponMastery extends JavaPlugin {
         masteryComponent = getEntityStoreRegistry().registerComponent(MasteryComponent.class, "Mastery", MasteryComponent.CODEC);
 
         getEntityStoreRegistry().registerSystem(new KillEventSystem(masteryComponent));
+        getEntityStoreRegistry().registerSystem(new ApplyDamageSystem());
     }
 
     public ComponentType<EntityStore, MasteryComponent> getMasteryComponent() {

@@ -12,6 +12,7 @@ import java.util.*;
 
 public class MasteryComponent implements Component<EntityStore> {
     public Map<String, Integer> progress;
+    public static int MAX_PROGRESS_VALUE = 500;
 
     public static final BuilderCodec<MasteryComponent> CODEC = BuilderCodec.builder(MasteryComponent.class, MasteryComponent::new)
             .append(new KeyedCodec<>("Progress", new ObjectMapCodec<>(
