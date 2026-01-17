@@ -4,13 +4,13 @@ import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.component.system.EntityEventSystem;
-import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.damage.Damage;
 import com.hypixel.hytale.server.core.modules.entity.damage.DamageSystems;
-import com.hypixel.hytale.server.core.universe.Universe;
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue;
+import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
@@ -47,22 +47,49 @@ public class ApplyDamageSystem extends DamageSystems.ApplyDamage {
         String weaponId = weapon.getItemId();
         int progress = masteryComponent.getProgress(weaponId);
 
-        float bonusMod = 1;
+        float damageBonusMod = 1;
         float newDamage = damage.getAmount();
 
         if (progress >= 400) {
-            bonusMod = 1.5f;
+            damageBonusMod = 1.5f;
         } else if (progress >= 200) {
-            bonusMod = 1.3f;
+            damageBonusMod = 1.3f;
         } else if (progress >= 100) {
-            bonusMod = 1.2f;
+            damageBonusMod = 1.2f;
         } else if (progress >= 50) {
-            bonusMod = 1.15f;
+            damageBonusMod = 1.15f;
         }
 
-        newDamage *= bonusMod;
+        newDamage *= damageBonusMod;
         damage.setAmount(Math.round(newDamage));
 
-        Universe.get().sendMessage(Message.raw(String.valueOf(damage.getAmount())));
+//        Universe.get().sendMessage(Message.raw(String.valueOf(damage.getAmount())));
+
+        int energyStat = DefaultEntityStatTypes.getSignatureEnergy();
+        EntityStatMap entityStatMapComponent = store.getComponent(sourceRef, EntityStatMap.getComponentType());
+        EntityStatValue energyValue = entityStatMapComponent.get(energyStat);
+        if (energyValue == null) {
+            return;
+        }
+
+        float energyBefore = energyValue.get();
+        if (energyBefore == 0.0f) {
+            return;
+        }
+
+        float energyBonus = 0;
+
+        if (progress >= 500) {
+            energyBonus = 0.8f;
+        } else if (progress >= 300) {
+            energyBonus = 0.5f;
+        } else if (progress >= 250) {
+            energyBonus = 0.4f;
+        } else if (progress >= 150) {
+            energyBonus = 0.2f;
+        }
+
+//        Universe.get().sendMessage(Message.raw("before: " + energyBefore));
+        entityStatMapComponent.addStatValue(energyStat, energyBonus);
     }
 }

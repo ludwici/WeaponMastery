@@ -1,9 +1,9 @@
 search.placeholder = Enter weapon id
 mastery.tier.1.desc = Increase damage by 15%
-mastery.tier.2.desc = Increase ultimate
+mastery.tier.2.desc = Increase signature energy by 0.2
 mastery.tier.3.desc = Increase damage by 20%
-mastery.tier.4.desc = Increase ultimate
+mastery.tier.4.desc = Increase signature energy by 0.4
 mastery.tier.5.desc = Increase damage by 30%
-mastery.tier.6.desc = Increase ultimate
+mastery.tier.6.desc = Increase signature energy by 0.5
 mastery.tier.7.desc = Increase damage by 50%
-mastery.tier.8.desc = Increase ultimate
+mastery.tier.8.desc = Increase signature energy by 0.8
