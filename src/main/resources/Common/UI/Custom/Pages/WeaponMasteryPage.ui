@@ -16,6 +16,7 @@ Group {
         LayoutMode: Top;
 
         Group #MasteryList {
+            Anchor: (Bottom: 18);
             LayoutMode: TopScrolling;
             ScrollbarStyle: $C.@DefaultScrollbarStyle;
         }

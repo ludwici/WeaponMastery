@@ -3,11 +3,11 @@ package com.ludwici.weaponmastery.pages;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
-import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
-import com.hypixel.hytale.server.core.ui.builder.EventData;
+import com.hypixel.hytale.server.core.ui.Anchor;
+import com.hypixel.hytale.server.core.ui.Value;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -36,7 +36,7 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
         int idx = 0;
         ItemStack weapon;
         String selector;
-        float value = 0;
+        float value;
         for (Map.Entry<String, Integer> entry : masteryComponent.progress.entrySet()) {
             weapon = new ItemStack(entry.getKey());
             uiCommandBuilder.append("#MasteryList", "Pages/MasteryEntry.ui");
@@ -47,6 +47,21 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
             uiCommandBuilder.set(selector + "#MasteryProgress.Value", value);
             uiCommandBuilder.set(selector + "#MasteryProgressTexture.Value", value);
             uiCommandBuilder.set(selector + "#CurrentProgress.TextSpans", Message.raw(entry.getValue() + " / 500"));
+
+            for (int tier = 0; tier <= 7; tier++) {
+                uiCommandBuilder.append(selector + "#TiersPanel", "Pages/TierEntry.ui");
+                String tierSelector = selector + "#TiersPanel[" + tier + "]";
+                Anchor anchor = new Anchor();
+                int left = MasteryComponent.tierByProgress.get(tier) * 300 / 500 - 10;
+                anchor.setBottom(Value.of(0));
+                anchor.setWidth(Value.of(20));
+                anchor.setHeight(Value.of(20));
+                anchor.setLeft(Value.of(left));
+                uiCommandBuilder.setObject(tierSelector + ".Anchor", anchor);
+                Message tooltipText = Message.translation("weaponmastery.mastery.tier." + tier + ".desc");
+                uiCommandBuilder.set(tierSelector + ".TooltipTextSpans", tooltipText);
+                uiCommandBuilder.set(tierSelector + " #Mark.Visible", MasteryComponent.tierUnlocked(tier, entry.getValue()));
+            }
             idx++;
         }
     }

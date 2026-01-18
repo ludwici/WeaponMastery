@@ -1,0 +1,16 @@
+$Common = "../Common.ui";
+
+Group {
+    TextTooltipShowDelay: 0.1;
+    LayoutMode: Bottom;
+    TextTooltipStyle: $Common.@DefaultTextTooltipStyle;
+    Background: "../Pages/Memories/InfoButtonBackground.png";
+
+    Group #Mark{
+        LayoutMode: Center;
+        Anchor: (Top: 0, Left: 0, Width: 20, Height: 20);
+        Background: "../Common/Checkmark.png";
+        Visible: true;
+        Padding: (Full: 4);
+    }
+}

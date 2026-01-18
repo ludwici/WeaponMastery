@@ -21,9 +21,15 @@ Group {
                 }
             }
 
+            Group #TiersPanel {
+                Anchor: (Height: 20, Top: 20);
+
+                //Background: #000000(0.6);
+            }
+
             Group {
                 Background: "../Pages/Memories/MemoriesProgress/MemoriesBarBg.png";
-                Anchor: (Height: 22, Width: 300, Bottom: 2);
+                Anchor: (Left: -3, Height: 22, Width: 300, Bottom: 2);
                 Padding: (Full: 4);
 
                 ProgressBar #MasteryProgress {

@@ -14,6 +14,25 @@ public class MasteryComponent implements Component<EntityStore> {
     public Map<String, Integer> progress;
     public static int MAX_PROGRESS_VALUE = 500;
 
+    public static final Map<Integer, Integer> tierByProgress = Map.of(
+          0, 50,
+          1, 100,
+          2, 150,
+          3, 200,
+          4, 250,
+          5, 300,
+          6, 400,
+          7, 500
+    );
+
+    public static boolean tierUnlocked(int tier, int currentProgress) {
+        Integer required = tierByProgress.get(tier);
+        if (required == null) {
+            return false;
+        }
+        return currentProgress >= required;
+    }
+
     public static final BuilderCodec<MasteryComponent> CODEC = BuilderCodec.builder(MasteryComponent.class, MasteryComponent::new)
             .append(new KeyedCodec<>("Progress", new ObjectMapCodec<>(
                     Codec.INTEGER, LinkedHashMap::new, key -> key, str -> str
