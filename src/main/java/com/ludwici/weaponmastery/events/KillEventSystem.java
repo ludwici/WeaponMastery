@@ -5,11 +5,9 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
-import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.damage.*;
-import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import com.ludwici.weaponmastery.components.MasteryComponent;
@@ -60,7 +58,7 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         }
 
         ItemStack weapon = attacker.getInventory().getItemInHand();
-        if (weapon == null) {
+        if (weapon == null || weapon.getItem().getWeapon() == null) {
             return;
         }
 
@@ -68,7 +66,6 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         if (masteryComponent == null) {
             masteryComponent = new MasteryComponent();
             commandBuffer.addComponent(sourceRef, masteryComponentType, masteryComponent);
-            Universe.get().sendMessage(Message.raw("init mastery"));
         }
 
         String weaponId = weapon.getItemId();
@@ -78,12 +75,12 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
         if (currentProgress < maxProgressValue) {
             double chance = (double) (maxProgressValue - currentProgress) / maxProgressValue;
             double val = random.nextDouble(0.0, 1.0);
-            Universe.get().sendMessage(Message.raw("Шанс: " + chance + "/" + val));
+//            Universe.get().sendMessage(Message.raw("Шанс: " + chance + "/" + val));
 
             if (val < chance) {
                 masteryComponent.addProgress(weaponId);
-                String playerName = attacker.getDisplayName();
-                Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
+//                String playerName = attacker.getDisplayName();
+//                Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
             }
         }
     }

@@ -50,7 +50,11 @@ public class MasteryComponent implements Component<EntityStore> {
     }
 
     public void addProgress(String weaponId) {
-        progress.merge(weaponId, 1, Integer::sum);
+        addProgress(weaponId, 1);
+    }
+
+    public void addProgress(String weaponId, int value) {
+        progress.merge(weaponId, value, (oldVal, add) -> Math.max(0, Math.min(MAX_PROGRESS_VALUE, oldVal + add)));
     }
 
     public int getProgress(String weaponId) {

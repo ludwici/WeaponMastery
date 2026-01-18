@@ -44,8 +44,16 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
             uiCommandBuilder.set(selector + "#WeaponName.TextSpans", Message.translation(weapon.getItem().getTranslationKey()));
             uiCommandBuilder.set(selector + "#WeaponItem.ItemId", entry.getKey());
             value = (float) entry.getValue() / 500;
-            uiCommandBuilder.set(selector + "#MasteryProgress.Value", value);
-            uiCommandBuilder.set(selector + "#MasteryProgressTexture.Value", value);
+            uiCommandBuilder.set(selector + "#MasteryProgress.Value", 0);
+//            uiCommandBuilder.set(selector + "#MasteryProgressTexture.Value", value);
+            {
+                Anchor anchor = new Anchor();
+                anchor.setWidth(Value.of(entry.getValue() * 300 / 500));
+//                anchor.setHeight(Value.of(22));
+                anchor.setLeft(Value.of(-3));
+//                anchor.setBottom(Value.of(2));
+                uiCommandBuilder.setObject(selector + "#MasteryProgressTexture.Anchor", anchor);
+            }
             uiCommandBuilder.set(selector + "#CurrentProgress.TextSpans", Message.raw(entry.getValue() + " / 500"));
 
             for (int tier = 0; tier <= 7; tier++) {

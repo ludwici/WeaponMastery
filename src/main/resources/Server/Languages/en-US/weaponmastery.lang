@@ -1,4 +1,5 @@
 search.placeholder = Enter weapon id
+
 mastery.tier.0.desc = Increase damage by <color is="#1eab1e">15%</color><color is="#888888"> (50/500)</color>
 mastery.tier.1.desc = Increase signature energy for each hit by <color is="#1eab1e">0.2</color><color is="#888888"> (100/500)</color>
 mastery.tier.2.desc = Increase damage by <color is="#1eab1e">20%</color> <color is="#888888"> (150/500)</color>
@@ -7,3 +8,10 @@ mastery.tier.4.desc = Increase damage by <color is="#1eab1e">30%</color><color i
 mastery.tier.5.desc = Increase signature energy for each hit by <color is="#1eab1e">0.5</color><color is="#888888"> (300/500)</color>
 mastery.tier.6.desc = Increase damage by <color is="#1eab1e">50%</color><color is="#888888"> (400/500)</color>
 mastery.tier.7.desc = Increase signature energy for each hit by <color is="#1eab1e">0.8</color><color is="#888888"> (500/500)</color>
+
+commands.wm_change.errors.no_player = Player not found
+commands.wm_change.errors.no_item = Item not found
+commands.wm_change.errors.no_weapon = Item is not weapon
+commands.wm_change.desc = Change player weapon mastery
+
+commands.wm.desc = Open weapon mastery menu

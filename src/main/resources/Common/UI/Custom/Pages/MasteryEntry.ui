@@ -29,20 +29,24 @@ Group {
 
             Group {
                 Background: "../Pages/Memories/MemoriesProgress/MemoriesBarBg.png";
-                Anchor: (Left: -3, Height: 22, Width: 300, Bottom: 2);
+                Anchor: (Left: 0, Height: 22, Width: 300, Bottom: 2);
                 Padding: (Full: 4);
 
                 ProgressBar #MasteryProgress {
                     BarTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarFill.png";
-                    EffectTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTipOfTheBar.png";
+                    //EffectTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTipOfTheBar.png";
                     EffectWidth: 70;
                     EffectHeight: 22;
                     EffectOffset: 52;
                 }
 
-                ProgressBar #MasteryProgressTexture {
-                    BarTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTexture.png";
+                Group #MasteryProgressTexture {
+                    Background: "../Pages/Memories/MemoriesProgress/MemoriesBarFill.png";
                 }
+
+                //ProgressBar #MasteryProgressTexture {
+                    //BarTexturePath: "../Pages/Memories/MemoriesProgress/MemoriesBarTexture.png";
+                //}
 
                 Label #CurrentProgress {
                     Anchor: (Height: 20, Width: 300, Bottom: -3);

@@ -7,16 +7,16 @@ Group {
     LayoutMode: Top;
     Padding: (Full: 20);
 
-    $C.@TextField #WeaponIDInput {
-        Anchor: (Height: 35);
-        PlaceholderText: %weaponmastery.search.placeholder;
-    }
+    //$C.@TextField #WeaponIDInput {
+        //Anchor: (Height: 35);
+        //PlaceholderText: %weaponmastery.search.placeholder;
+    //}
 
     Group {
         LayoutMode: Top;
 
         Group #MasteryList {
-            Anchor: (Bottom: 18);
+            Anchor: (Bottom: 6);
             LayoutMode: TopScrolling;
             ScrollbarStyle: $C.@DefaultScrollbarStyle;
         }

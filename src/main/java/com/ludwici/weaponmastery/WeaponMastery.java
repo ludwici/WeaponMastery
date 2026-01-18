@@ -4,7 +4,8 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import com.ludwici.weaponmastery.commands.Command;
+import com.ludwici.weaponmastery.commands.WeaponMasteryChangeCommand;
+import com.ludwici.weaponmastery.commands.WeaponMasteryOpenCommand;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import com.ludwici.weaponmastery.events.ApplyDamageSystem;
 import com.ludwici.weaponmastery.events.KillEventSystem;
@@ -26,8 +27,8 @@ public class WeaponMastery extends JavaPlugin {
     @Override
     protected void setup() {
         super.setup();
-        getCommandRegistry().registerCommand(new Command("test_command", "desc", false));
-
+        getCommandRegistry().registerCommand(new WeaponMasteryChangeCommand("wm_change", "weaponmastery.commands.wm_change.desc", false));
+        getCommandRegistry().registerCommand(new WeaponMasteryOpenCommand("wm", "", false));
         masteryComponent = getEntityStoreRegistry().registerComponent(MasteryComponent.class, "Mastery", MasteryComponent.CODEC);
 
         getEntityStoreRegistry().registerSystem(new KillEventSystem(masteryComponent));
