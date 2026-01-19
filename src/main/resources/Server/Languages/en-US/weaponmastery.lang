@@ -9,6 +9,16 @@ mastery.tier.5.desc = Increase signature energy for each hit by <color is="#1eab
 mastery.tier.6.desc = Increase damage by <color is="#1eab1e">50%</color><color is="#888888"> (400/500)</color>
 mastery.tier.7.desc = Increase signature energy for each hit by <color is="#1eab1e">0.8</color><color is="#888888"> (500/500)</color>
 
+mastery.notification.title = Mastery improved ({current}/{maximum})
+mastery.notification.tier.0.desc = Increase damage by 15%
+mastery.notification.tier.1.desc = Increase signature energy for each hit by 0.2
+mastery.notification.tier.2.desc = Increase damage by 20%
+mastery.notification.tier.3.desc = Increase signature energy for each hit by 0.4
+mastery.notification.tier.4.desc = Increase damage by 30%
+mastery.notification.tier.5.desc = Increase signature energy for each hit by 0.5
+mastery.notification.tier.6.desc = Increase damage by 50%
+mastery.notification.tier.7.desc = Increase signature energy for each hit by 0.8
+
 commands.wm_change.errors.no_player = Player not found
 commands.wm_change.errors.no_item = Item not found
 commands.wm_change.errors.no_weapon = Item is not weapon

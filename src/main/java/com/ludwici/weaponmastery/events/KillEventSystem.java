@@ -5,15 +5,19 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.damage.*;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.hypixel.hytale.server.core.util.NotificationUtil;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 public class KillEventSystem extends DeathSystems.OnDeathSystem {
@@ -79,6 +83,14 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
 
             if (val < chance) {
                 masteryComponent.addProgress(weaponId);
+                Optional<Integer> tier = MasteryComponent.tierByProgress.entrySet().stream().filter(e -> e.getValue() == (currentProgress+1)).map(Map.Entry::getKey).findFirst();
+                if (tier.isPresent()) {
+                    var packetHandler = attacker.getPlayerRef().getPacketHandler();
+                    var primaryMessage = Message.translation("weaponmastery.mastery.notification.title").bold(true).param("current", currentProgress+1).param("maximum", maxProgressValue);
+                    var secondaryMessage = Message.translation("weaponmastery.mastery.notification.tier." + tier.get() +".desc").bold(true);
+                    var icon = weapon.toPacket();
+                    NotificationUtil.sendNotification(packetHandler, primaryMessage, secondaryMessage, icon);
+                }
 //                String playerName = attacker.getDisplayName();
 //                Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
             }

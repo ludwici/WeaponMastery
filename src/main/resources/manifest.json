@@ -1,7 +1,7 @@
 {
   "Group": "com.ludwici",
   "Name": "Weapon Mastery",
-  "Version": "1.0.0",
+  "Version": "1.1.0",
   "Main": "com.ludwici.weaponmastery.WeaponMastery",
   "IncludesAssetPack": true,
   "Authors": [

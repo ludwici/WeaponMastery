@@ -9,6 +9,16 @@ mastery.tier.5.desc = Увеличивает сигнатурную энерги
 mastery.tier.6.desc = Увеличивает урон на <color is="#1eab1e">50%</color><color is="#888888"> (400/500)</color>
 mastery.tier.7.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.8</color> за каждый удар <color is="#888888"> (500/500)</color>
 
+mastery.notification.title = Навык улучшен ({current}/{maximum})
+mastery.notification.tier.0.desc = Увеличен урон на 15%
+mastery.notification.tier.1.desc = Увеличена сигнатурная энергия на 0.2 за удар
+mastery.notification.tier.2.desc = Увеличен урон на 20%
+mastery.notification.tier.3.desc = Увеличена сигнатурная энергия на 0.4 за удар
+mastery.notification.tier.4.desc = Увеличен урон на 30%
+mastery.notification.tier.5.desc = Увеличена сигнатурная энергия на 0.5 за удар
+mastery.notification.tier.6.desc = Увеличен урон на 50%
+mastery.notification.tier.7.desc = Увеличена сигнатурная энергия на 0.8 за удар
+
 commands.wm_change.errors.no_player = Игрок не найден
 commands.wm_change.errors.no_item = Предмет не найден
 commands.wm_change.errors.no_weapon = Предмет не является оружием
