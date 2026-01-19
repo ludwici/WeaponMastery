@@ -1,9 +1,10 @@
 {
-  "Group": "com.ludwici",
+  "Group": "ludwici",
   "Name": "Weapon Mastery",
   "Version": "1.1.0",
   "Main": "com.ludwici.weaponmastery.WeaponMastery",
   "IncludesAssetPack": true,
+  "ServerVersion": "*",
   "Authors": [
     {
       "Name": "ludwici"

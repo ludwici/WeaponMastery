@@ -14,7 +14,7 @@ public class MasteryComponent implements Component<EntityStore> {
     public Map<String, Integer> progress;
     public static int MAX_PROGRESS_VALUE = 500;
 
-    public static final Map<Integer, Integer> tierByProgress = Map.of(
+    public static final NavigableMap<Integer, Integer> tierByProgress = new TreeMap<>(Map.of(
           0, 50,
           1, 100,
           2, 150,
@@ -23,7 +23,13 @@ public class MasteryComponent implements Component<EntityStore> {
           5, 300,
           6, 400,
           7, 500
-    );
+    ));
+
+    static final NavigableMap<Integer, Integer> progressToTier = new TreeMap<>();
+
+    static {
+        tierByProgress.forEach((tier, progress) -> progressToTier.put(progress, tier));
+    }
 
     public static boolean tierUnlocked(int tier, int currentProgress) {
         Integer required = tierByProgress.get(tier);
@@ -31,6 +37,11 @@ public class MasteryComponent implements Component<EntityStore> {
             return false;
         }
         return currentProgress >= required;
+    }
+
+    public static int getTier(int value) {
+        var entry = progressToTier.floorEntry(value);
+        return entry != null ? entry.getValue() : 0;
     }
 
     public static final BuilderCodec<MasteryComponent> CODEC = BuilderCodec.builder(MasteryComponent.class, MasteryComponent::new)

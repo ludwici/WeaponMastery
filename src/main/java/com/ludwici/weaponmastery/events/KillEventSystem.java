@@ -9,9 +9,11 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.damage.*;
+import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
+import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
@@ -82,14 +84,19 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
 //            Universe.get().sendMessage(Message.raw("Шанс: " + chance + "/" + val));
 
             if (val < chance) {
-                masteryComponent.addProgress(weaponId);
-                Optional<Integer> tier = MasteryComponent.tierByProgress.entrySet().stream().filter(e -> e.getValue() == (currentProgress+1)).map(Map.Entry::getKey).findFirst();
-                if (tier.isPresent()) {
-                    var packetHandler = attacker.getPlayerRef().getPacketHandler();
-                    var primaryMessage = Message.translation("weaponmastery.mastery.notification.title").bold(true).param("current", currentProgress+1).param("maximum", maxProgressValue);
-                    var secondaryMessage = Message.translation("weaponmastery.mastery.notification.tier." + tier.get() +".desc").bold(true);
-                    var icon = weapon.toPacket();
-                    NotificationUtil.sendNotification(packetHandler, primaryMessage, secondaryMessage, icon);
+                int rate = WeaponMastery.getInstance().getMasteryRate();
+                masteryComponent.addProgress(weaponId, rate);
+                if (WeaponMastery.getInstance().isShowImproveMasteryNotification()) {
+                    int newProgress = masteryComponent.getProgress(weaponId);
+                    int currentTier = MasteryComponent.getTier(currentProgress);
+                    int newTier = MasteryComponent.getTier(newProgress);
+                    if (newTier > currentTier) {
+                        var packetHandler = attacker.getPlayerRef().getPacketHandler();
+                        var primaryMessage = Message.translation("weaponmastery.mastery.notification.title").bold(true).param("current", newProgress).param("maximum", maxProgressValue);
+                        var secondaryMessage = Message.translation("weaponmastery.mastery.notification.tier." + newTier + ".desc").bold(true);
+                        var icon = weapon.toPacket();
+                        NotificationUtil.sendNotification(packetHandler, primaryMessage, secondaryMessage, icon);
+                    }
                 }
 //                String playerName = attacker.getDisplayName();
 //                Universe.get().sendMessage(Message.raw(playerName + " убил нипа с помощью " + weapon.getItemId() + " " + masteryComponent.getProgress(weaponId) + "/100"));
