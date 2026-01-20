@@ -1,5 +1,5 @@
 Group {
-    Padding: (Full: 6);
+    Padding: (Top: 4);
     Background: #000000(0.2);
 
     Group {

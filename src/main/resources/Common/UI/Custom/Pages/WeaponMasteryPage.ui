@@ -1,24 +1,43 @@
 $C = "../Common.ui";
 $ME = "MasteryEntry.ui";
 
-Group {
-    Anchor: (Width: 500, Height: 600);
-    Background: #1a1a2e(0.95);
-    LayoutMode: Top;
-    Padding: (Full: 20);
+$C.@PageOverlay {
 
-    //$C.@TextField #WeaponIDInput {
-        //Anchor: (Height: 35);
-        //PlaceholderText: %weaponmastery.search.placeholder;
-    //}
+    $C.@Container {
+        Anchor: (Width: 500, Height: 600);
 
-    Group {
-        LayoutMode: Top;
+        #Title {
+            Group {
+                $C.@Title {
+                  @Text = "Weapon Mastery";
+                }
+            }
+        }
 
-        Group #MasteryList {
-            Anchor: (Bottom: 6);
-            LayoutMode: TopScrolling;
-            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+        #Content {
+            LayoutMode: Top;
+
+            Group {
+                LayoutMode: Top;
+                $C.@TextField #WeaponIDInput {
+                    Anchor: (Height: 35);
+                    PlaceholderText: %weaponmastery.search.placeholder;
+                }
+            }
+
+            Group {
+                Group {
+                    LayoutMode: Top;
+
+                    Group #MasteryList {
+                        Anchor: (Top: 4, Bottom: 30);
+                        LayoutMode: TopScrolling;
+                        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+                    }
+                }
+            }
         }
     }
 }
+
+$C.@BackButton {}
