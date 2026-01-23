@@ -9,8 +9,8 @@ import com.ludwici.weaponmastery.commands.WeaponMasteryChangeCommand;
 import com.ludwici.weaponmastery.commands.WeaponMasteryOpenCommand;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import com.ludwici.weaponmastery.config.MasteryConfig;
-import com.ludwici.weaponmastery.events.ApplyDamageSystem;
-import com.ludwici.weaponmastery.events.KillEventSystem;
+import com.ludwici.weaponmastery.systems.ApplyDamageSystem;
+import com.ludwici.weaponmastery.systems.KillEventSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.nio.file.Files;
@@ -38,12 +38,20 @@ public class WeaponMastery extends JavaPlugin {
         if (!Files.exists(getDataDirectory())) {
             config.save().thenRun(() -> getLogger().atInfo().log("WeaponMastery saved default config"));
         }
+
         getCommandRegistry().registerCommand(new WeaponMasteryChangeCommand("wm_change", "weaponmastery.commands.wm_change.desc", false));
         getCommandRegistry().registerCommand(new WeaponMasteryOpenCommand("wm", "", false));
         masteryComponent = getEntityStoreRegistry().registerComponent(MasteryComponent.class, "Mastery", MasteryComponent.CODEC);
 
-        getEntityStoreRegistry().registerSystem(new KillEventSystem(masteryComponent));
-        getEntityStoreRegistry().registerSystem(new ApplyDamageSystem());
+        String mode = getMasteryMode();
+        boolean handlePerDamage = false;
+
+        switch (mode) {
+            case "DAMAGE" -> handlePerDamage = true;
+            default -> getEntityStoreRegistry().registerSystem(new KillEventSystem());
+        }
+
+        getEntityStoreRegistry().registerSystem(new ApplyDamageSystem(handlePerDamage));
     }
 
     public ComponentType<EntityStore, MasteryComponent> getMasteryComponent() {
@@ -56,5 +64,13 @@ public class WeaponMastery extends JavaPlugin {
 
     public int getMasteryRate() {
         return config.get().getMasteryRate();
+    }
+
+    public float getMasteryChance() {
+        return config.get().getMasteryChance();
+    }
+
+    public String getMasteryMode() {
+        return config.get().getMasteryMode();
     }
 }
