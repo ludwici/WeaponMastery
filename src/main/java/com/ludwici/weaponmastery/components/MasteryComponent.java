@@ -41,7 +41,7 @@ public class MasteryComponent implements Component<EntityStore> {
 
     public static int getTier(int value) {
         var entry = progressToTier.floorEntry(value);
-        return entry != null ? entry.getValue() : 0;
+        return entry != null ? entry.getValue() : -1;
     }
 
     public static final BuilderCodec<MasteryComponent> CODEC = BuilderCodec.builder(MasteryComponent.class, MasteryComponent::new)
