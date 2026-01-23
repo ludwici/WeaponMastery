@@ -1,4 +1,4 @@
-package com.ludwici.weaponmastery.events;
+package com.ludwici.weaponmastery.systems;
 
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
@@ -17,6 +17,13 @@ import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class ApplyDamageSystem extends DamageSystems.ApplyDamage {
+
+    private final boolean handlePerDamage;
+
+    public ApplyDamageSystem(boolean handlePerDamage) {
+        this.handlePerDamage = handlePerDamage;
+    }
+
     @Override
     public void handle(int index, @NonNullDecl ArchetypeChunk<EntityStore> archetypeChunk, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl Damage damage) {
         Damage.Source source = damage.getSource();
@@ -37,6 +44,10 @@ public class ApplyDamageSystem extends DamageSystems.ApplyDamage {
         ItemStack weapon = attacker.getInventory().getItemInHand();
         if (weapon == null) {
             return;
+        }
+
+        if (handlePerDamage) {
+            MasterySystem.handle(sourceRef, store, commandBuffer, weapon);
         }
 
         MasteryComponent masteryComponent = commandBuffer.getComponent(sourceRef, WeaponMastery.getInstance().getMasteryComponent());
