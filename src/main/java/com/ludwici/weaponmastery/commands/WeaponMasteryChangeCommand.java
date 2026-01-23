@@ -40,8 +40,18 @@ public class WeaponMasteryChangeCommand extends AbstractPlayerCommand {
         }
 
         String weaponID = weaponIdArg.get(commandContext);
-        ItemStack itemStack = new ItemStack(weaponID);
-        if (!itemStack.isValid()) {
+
+        ItemStack itemStack;
+
+        if (weaponID.equals("current")) {
+            Player targetPlayer = store.getComponent(targetRef.getReference(), Player.getComponentType());
+            itemStack = targetPlayer.getInventory().getItemInHand();
+            weaponID = itemStack.getItemId();
+        } else {
+            itemStack = new ItemStack(weaponID);
+        }
+
+        if (itemStack == null || !itemStack.isValid()) {
             player.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_item"));
             return;
         }
@@ -52,7 +62,6 @@ public class WeaponMasteryChangeCommand extends AbstractPlayerCommand {
             return;
         }
 
-//        Player target = store.getComponent(targetRef.getReference(), Player.getComponentType());
         int newProgress = progressArg.get(commandContext);
 
         MasteryComponent masteryComponent = store.getComponent(targetRef.getReference(), WeaponMastery.getInstance().getMasteryComponent());
