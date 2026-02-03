@@ -12,7 +12,6 @@ import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 

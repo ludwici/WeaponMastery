@@ -5,6 +5,7 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.item.config.Item;
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.ui.Anchor;
@@ -14,7 +15,6 @@ import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -52,19 +52,20 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
         }
         int idx = 0;
         ItemStack weapon;
+        Item weaponItem;
         String selector;
 //        float value;
 
         for (Map.Entry<String, Integer> entry : masteryComponent.progress.entrySet()) {
             weapon = new ItemStack(entry.getKey());
 //            if (!(searchQuery.isEmpty()) && !entry.getKey().contains(searchQuery)) {
-            String weaponName = Message.translation(weapon.getItem().getTranslationKey()).getAnsiMessage().toLowerCase();
+            String weaponName = Message.translation(weaponItem.getTranslationKey()).getAnsiMessage().toLowerCase();
             if (!(searchQuery.isEmpty()) && !weaponName.contains(searchQuery)) {
                 continue;
             }
             uiCommandBuilder.append("#MasteryList", "Pages/MasteryEntry.ui");
             selector = "#MasteryList[" + idx + "] ";
-            uiCommandBuilder.set(selector + "#WeaponName.TextSpans", Message.translation(weapon.getItem().getTranslationKey()));
+            uiCommandBuilder.set(selector + "#WeaponName.TextSpans", Message.translation(weaponItem.getTranslationKey()));
             uiCommandBuilder.set(selector + "#WeaponItem.ItemId", entry.getKey());
 //            value = (float) entry.getValue() / 500;
             uiCommandBuilder.set(selector + "#MasteryProgress.Value", 0);

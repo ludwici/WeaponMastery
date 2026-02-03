@@ -7,7 +7,6 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
-import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
 import com.ludwici.weaponmastery.WeaponMastery;
@@ -16,6 +15,7 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.Random;
 
+@SuppressWarnings("removal")
 public class MasterySystem {
     private static ComponentType<EntityStore, MasteryComponent> masteryComponentType;
     private static final Random random = new Random();
