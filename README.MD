@@ -13,6 +13,12 @@ By killing creatures you will improve your weapon mastery using a specific weapo
 
 Use command `/wm` to open weapon mastery menu, or `/wm_change <player_name> <weapon_id> <new_progress>` to change mastery progress (only for op).  
 Use `/wm_change ludwici current 10` to improve ludwici mastery in the weapon he holds in his hand by 10
+The `/wm_reset_all <player> --confirm` command can be used to reset all of a player's masteries.
+
+Unknown items do not display in mastery menu. If you have disabled a plugin  (or pack) that contained a weapon whose mastery you have already mastered, that weapon will not be displayed in the list. However, this data is still stored in memory. If you enable the plugin again, the mastery will return.
+
+If you are sure you do not want the data to continue to be stored, use the `/wm_clean` command to delete data about all unknown weapons.
+
 
 Configurable options (in `Hytale/UserData/Saves/<YourSave>/mods/ludwici_Weapon Mastery/WeaponMastery.json`):  
 `ShowImproveMasteryNotification` - for enable/disable notifications  
