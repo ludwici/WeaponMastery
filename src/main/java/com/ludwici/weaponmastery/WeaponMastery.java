@@ -43,6 +43,8 @@ public class WeaponMastery extends JavaPlugin {
 
         getCommandRegistry().registerCommand(new WeaponMasteryChangeCommand("wm_change", "weaponmastery.commands.wm_change.desc", false));
         getCommandRegistry().registerCommand(new WeaponMasteryOpenCommand("wm", "", false));
+        getCommandRegistry().registerCommand(new WeaponMasteryCleanUnkCommand("wm_clean", ""));
+        getCommandRegistry().registerCommand(new WeaponMasteryResetCommand("wm_reset_all", "", true));
         masteryComponent = getEntityStoreRegistry().registerComponent(MasteryComponent.class, "Mastery", MasteryComponent.CODEC);
 
         String mode = getMasteryMode();
