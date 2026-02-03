@@ -2,7 +2,7 @@
   "Group": "ludwici",
   "Name": "Weapon Mastery",
   "Description": "Adds a weapon mastery system. Improve your skills by fighting monsters.",
-  "Version": "1.3.0",
+  "Version": "1.4.0",
   "Main": "com.ludwici.weaponmastery.WeaponMastery",
   "IncludesAssetPack": true,
   "ServerVersion": "*",
