@@ -58,6 +58,11 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
 
         for (Map.Entry<String, Integer> entry : masteryComponent.progress.entrySet()) {
             weapon = new ItemStack(entry.getKey());
+            weaponItem = weapon.getItem();
+            if (weaponItem == Item.UNKNOWN) {
+                continue;
+            }
+
 //            if (!(searchQuery.isEmpty()) && !entry.getKey().contains(searchQuery)) {
             String weaponName = Message.translation(weaponItem.getTranslationKey()).getAnsiMessage().toLowerCase();
             if (!(searchQuery.isEmpty()) && !weaponName.contains(searchQuery)) {
