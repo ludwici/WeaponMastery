@@ -22,7 +22,7 @@ public class MasterySystem {
 
     public static void handle(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl ItemStack weapon) {
         if (masteryComponentType == null) {
-            masteryComponentType = WeaponMastery.getInstance().getMasteryComponent();
+            masteryComponentType = MasteryComponent.getMasteryComponent();
         }
 
         Player attacker = store.getComponent(ref, Player.getComponentType());

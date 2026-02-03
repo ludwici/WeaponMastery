@@ -46,7 +46,7 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
 
     private void buildWeaponList(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl UICommandBuilder uiCommandBuilder, @NonNullDecl Store<EntityStore> store) {
         uiCommandBuilder.clear("#MasteryList");
-        MasteryComponent masteryComponent = store.getComponent(ref, WeaponMastery.getInstance().getMasteryComponent());
+        MasteryComponent masteryComponent = store.getComponent(ref, MasteryComponent.getMasteryComponent());
         if (masteryComponent == null) {
             return;
         }

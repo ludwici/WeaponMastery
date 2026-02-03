@@ -64,10 +64,10 @@ public class WeaponMasteryChangeCommand extends AbstractPlayerCommand {
 
         int newProgress = progressArg.get(commandContext);
 
-        MasteryComponent masteryComponent = store.getComponent(targetRef.getReference(), WeaponMastery.getInstance().getMasteryComponent());
+        MasteryComponent masteryComponent = store.getComponent(targetRef.getReference(), MasteryComponent.getMasteryComponent());
         if (masteryComponent == null) {
             masteryComponent = new MasteryComponent();
-            store.addComponent(targetRef.getReference(), WeaponMastery.getInstance().getMasteryComponent(), masteryComponent);
+            store.addComponent(targetRef.getReference(), MasteryComponent.getMasteryComponent(), masteryComponent);
         }
 
         masteryComponent.addProgress(weaponID, newProgress);

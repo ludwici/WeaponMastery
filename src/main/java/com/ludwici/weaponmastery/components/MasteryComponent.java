@@ -77,4 +77,8 @@ public class MasteryComponent implements Component<EntityStore> {
     public Component<EntityStore> clone() {
         return new MasteryComponent(this);
     }
+
+    public static ComponentType<EntityStore, MasteryComponent> getMasteryComponent() {
+        return WeaponMastery.getInstance().getMasteryComponent();
+    }
 }

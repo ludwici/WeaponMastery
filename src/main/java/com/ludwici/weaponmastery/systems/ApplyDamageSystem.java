@@ -50,7 +50,7 @@ public class ApplyDamageSystem extends DamageSystems.ApplyDamage {
             MasterySystem.handle(sourceRef, store, commandBuffer, weapon);
         }
 
-        MasteryComponent masteryComponent = commandBuffer.getComponent(sourceRef, WeaponMastery.getInstance().getMasteryComponent());
+        MasteryComponent masteryComponent = commandBuffer.getComponent(sourceRef, MasteryComponent.getMasteryComponent());
         if (masteryComponent == null) {
             return;
         }
