@@ -16,6 +16,7 @@ import com.ludwici.weaponmastery.systems.KillEventSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.nio.file.Files;
+import java.util.List;
 
 public class WeaponMastery extends JavaPlugin {
     private static WeaponMastery instance;
@@ -76,5 +77,9 @@ public class WeaponMastery extends JavaPlugin {
 
     public String getMasteryMode() {
         return config.get().getMasteryMode();
+    }
+
+    public List<String> getIgnoredWeapons() {
+        return config.get().getIgnoredWeapons();
     }
 }

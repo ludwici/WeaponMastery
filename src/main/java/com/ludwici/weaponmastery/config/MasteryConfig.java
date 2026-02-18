@@ -4,6 +4,10 @@ import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MasteryConfig {
 
     public static final BuilderCodec<MasteryConfig> CODEC = BuilderCodec.<MasteryConfig>builder(MasteryConfig.class, MasteryConfig::new)
@@ -23,12 +27,17 @@ public class MasteryConfig {
                     (masteryConfig, aString, extraInfo) -> masteryConfig.masteryMode = aString,
                     (masteryConfig, extraInfo) -> masteryConfig.masteryMode)
             .add()
+            .append(new KeyedCodec<>("IgnoredWeapons", Codec.STRING_ARRAY),
+                    (masteryConfig, value, extraInfo) -> masteryConfig.ignoredWeapons = Arrays.asList(value),
+                    (masteryConfig, extraInfo) -> masteryConfig.ignoredWeapons.toArray(String[]::new))
+            .add()
             .build();
 
     private boolean showImproveMasteryNotification = true;
     private int masteryRate = 1;
     private float masteryChance = 1;
     private String masteryMode = "KILL";
+    private List<String> ignoredWeapons = new ArrayList<>();
 
     public MasteryConfig() {}
 
@@ -46,5 +55,9 @@ public class MasteryConfig {
 
     public String getMasteryMode() {
         return masteryMode;
+    }
+
+    public List<String> getIgnoredWeapons() {
+        return ignoredWeapons;
     }
 }

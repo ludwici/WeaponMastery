@@ -21,6 +21,12 @@ public class MasterySystem {
     private static final Random random = new Random();
 
     public static void handle(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl ItemStack weapon) {
+        String weaponId = weapon.getItemId();
+
+        if (WeaponMastery.getInstance().getIgnoredWeapons().contains(weaponId)) {
+            return;
+        }
+
         if (masteryComponentType == null) {
             masteryComponentType = MasteryComponent.getMasteryComponent();
         }
@@ -33,7 +39,6 @@ public class MasterySystem {
             commandBuffer.addComponent(ref, masteryComponentType, masteryComponent);
         }
 
-        String weaponId = weapon.getItemId();
         int maxProgressValue = MasteryComponent.MAX_PROGRESS_VALUE;
         int currentProgress = masteryComponent.getProgress(weaponId);
 
