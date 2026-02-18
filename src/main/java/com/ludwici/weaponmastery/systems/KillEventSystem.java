@@ -16,10 +16,11 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
 
     @Override
     public void onComponentAdded(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl DeathComponent deathComponent, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer) {
-        DamageCause deathCause = deathComponent.getDeathCause();
-        if (deathCause != DamageCause.PHYSICAL && deathCause != DamageCause.PROJECTILE) {
-            return;
-        }
+//        DamageCause deathCause = deathComponent.getDeathCause();
+
+//        if (deathCause != DamageCause.PHYSICAL && deathCause != DamageCause.PROJECTILE && deathCause != DamageCause.ENVIRONMENT) {
+//            return;
+//        }
 
         Damage deathInfo = deathComponent.getDeathInfo();
         if (deathInfo == null) {
