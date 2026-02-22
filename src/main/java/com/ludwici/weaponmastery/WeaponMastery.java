@@ -38,6 +38,7 @@ public class WeaponMastery extends JavaPlugin {
     @Override
     protected void setup() {
         super.setup();
+        new HStats("a6f7662a-bc45-4c48-9dc8-a1fc78149689", "1.5.1");
         if (!Files.exists(getDataDirectory())) {
             config.save().thenRun(() -> getLogger().atInfo().log("WeaponMastery saved default config"));
         }
