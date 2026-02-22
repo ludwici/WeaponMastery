@@ -33,6 +33,7 @@ $C.@PageOverlay {
                         Anchor: (Top: 4, Bottom: 30);
                         LayoutMode: TopScrolling;
                         ScrollbarStyle: $C.@DefaultScrollbarStyle;
+                        Background: #000000(0.2);
                     }
                 }
             }
