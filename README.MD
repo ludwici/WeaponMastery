@@ -11,20 +11,35 @@ By killing creatures you will improve your weapon mastery using a specific weapo
 400/500 - Increase damage by 50%  
 500/500 - Increase signature energy for each hit by 0.8
 
-Use command `/wm` to open weapon mastery menu, or `/wm_change <player_name> <weapon_id> <new_progress>` to change mastery progress (only for op).  
-Use `/wm_change ludwici current 10` to improve ludwici mastery in the weapon he holds in his hand by 10
-The `/wm_reset_all <player> --confirm` command can be used to reset all of a player's masteries.
+Note: Mastery changes when direct damage is inflicted. Example: A fireball hits a mob and the mob dies. If the fireball creates an explosion that inflicts a burning effect on the mob and the mob dies as a result, mastery will not increase. The effect does not store information about which player applied it, so at the moment I cannot track this without additional mechanics.
 
-Unknown items do not display in mastery menu. If you have disabled a plugin  (or pack) that contained a weapon whose mastery you have already mastered, that weapon will not be displayed in the list. However, this data is still stored in memory. If you enable the plugin again, the mastery will return.
+Use command `/wm` to open weapon mastery menu, or `/wm_change <player_name> <weapon_id> <new_progress>` to change mastery progress (only for op).  
+Use `/wm_change ludwici current 10` to improve ludwici mastery in the weapon he holds in his hand by 10 The `/wm_reset_all <player> --confirm` command can be used to reset all of a player's masteries.
+
+Unknown items do not display in mastery menu. If you have disabled a plugin (or pack) that contained a weapon whose mastery you have already mastered, that weapon will not be displayed in the list. However, this data is still stored in memory. If you enable the plugin again, the mastery will return.
 
 If you are sure you do not want the data to continue to be stored, use the `/wm_clean` command to delete data about all unknown weapons.
-
 
 Configurable options (in `Hytale/UserData/Saves/<YourSave>/mods/ludwici_Weapon Mastery/WeaponMastery.json`):  
 `ShowImproveMasteryNotification` - for enable/disable notifications  
 `MasteryRate` - determines the amount of mastery points you receive for kills  
 `MasteryMode` - `"KILL"` (default value) means that the mastery will improve due to killing mobs. `"DAMAGE"` means that the mastery will improve with each hit (like old World of Warcraft system)  
-`MasteryChance` - With each mastery level, the chance to improve the mastery increases. You can change this parameter to increase or decrease this chance. Valid values ​​are from 0.1 to 0.9 (to make the chance occur less frequently) or from 1.1 to 2.0 (to make the chance occur more frequently).
+`MasteryChance` - With each mastery level, the chance to improve the mastery increases. You can change this parameter to increase or decrease this chance. Valid values ​​are from 0.1 to 0.9 (to make the chance occur less frequently) or from 1.1 to 2.0 (to make the chance occur more frequently).  
+`IgnoredWeapons` - If you don't want to improve your skill with certain weapons, you can specify their IDs in the config. Example:
+
+```
+"IgnoredWeapons": [
+    "Weapon_Longsword_Flame"
+]
+```
+
+`IgnoredRoles` - If you don't want to improve your mastery with certain entity roles, you can specify their names in the config. Example:
+
+```
+"IgnoredRoles": [
+    "Boar"
+]
+```
 
 [![patreon-singular](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/patreon-singular_64h.png)](https://www.patreon.com/ludwici) [![kofi-singular](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-singular-alt_64h.png)](https://ko-fi.com/ludwici)
 
