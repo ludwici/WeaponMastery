@@ -83,4 +83,8 @@ public class WeaponMastery extends JavaPlugin {
     public List<String> getIgnoredWeapons() {
         return config.get().getIgnoredWeapons();
     }
+
+    public List<String> getIgnoredRoles() {
+        return config.get().getIgnoredRoles();
+    }
 }

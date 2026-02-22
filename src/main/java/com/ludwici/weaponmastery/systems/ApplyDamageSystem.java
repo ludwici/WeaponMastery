@@ -12,6 +12,8 @@ import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.hypixel.hytale.server.npc.entities.NPCEntity;
+import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -40,13 +42,19 @@ public class ApplyDamageSystem extends DamageSystems.ApplyDamage {
             return;
         }
 
+        var targetRef = archetypeChunk.getReferenceTo(index);
+        NPCEntity npcComponent = commandBuffer.getComponent(targetRef, NPCEntity.getComponentType());
+        if (npcComponent == null) {
+            return;
+        }
+
         ItemStack weapon = attacker.getInventory().getItemInHand();
         if (weapon == null) {
             return;
         }
 
         if (handlePerDamage) {
-            MasterySystem.handle(sourceRef, store, commandBuffer, weapon);
+            MasterySystem.handle(sourceRef, store, commandBuffer, weapon, npcComponent);
         }
 
         MasteryComponent masteryComponent = commandBuffer.getComponent(sourceRef, MasteryComponent.getMasteryComponent());

@@ -53,7 +53,7 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
             return;
         }
 
-        MasterySystem.handle(sourceRef, store, commandBuffer, weapon);
+        MasterySystem.handle(sourceRef, store, commandBuffer, weapon, npcComponent);
     }
 
     @NullableDecl

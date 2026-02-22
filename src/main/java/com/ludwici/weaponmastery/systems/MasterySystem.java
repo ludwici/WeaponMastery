@@ -9,6 +9,7 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
+import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import com.ludwici.weaponmastery.WeaponMastery;
 import com.ludwici.weaponmastery.components.MasteryComponent;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
@@ -20,10 +21,14 @@ public class MasterySystem {
     private static ComponentType<EntityStore, MasteryComponent> masteryComponentType;
     private static final Random random = new Random();
 
-    public static void handle(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl ItemStack weapon) {
+    public static void handle(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl ItemStack weapon, @NonNullDecl NPCEntity npcComponent) {
         String weaponId = weapon.getItemId();
 
         if (WeaponMastery.getInstance().getIgnoredWeapons().contains(weaponId)) {
+            return;
+        }
+
+        if (WeaponMastery.getInstance().getIgnoredRoles().contains(npcComponent.getRoleName())) {
             return;
         }
 

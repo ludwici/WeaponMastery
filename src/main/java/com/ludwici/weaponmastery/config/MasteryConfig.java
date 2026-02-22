@@ -31,6 +31,10 @@ public class MasteryConfig {
                     (masteryConfig, value, extraInfo) -> masteryConfig.ignoredWeapons = Arrays.asList(value),
                     (masteryConfig, extraInfo) -> masteryConfig.ignoredWeapons.toArray(String[]::new))
             .add()
+            .append(new KeyedCodec<>("IgnoredRoles", Codec.STRING_ARRAY),
+                    (masteryConfig, value, extraInfo) -> masteryConfig.ignoredRoles = Arrays.asList(value),
+                    (masteryConfig, extraInfo) -> masteryConfig.ignoredRoles.toArray(String[]::new))
+            .add()
             .build();
 
     private boolean showImproveMasteryNotification = true;
@@ -38,6 +42,7 @@ public class MasteryConfig {
     private float masteryChance = 1;
     private String masteryMode = "KILL";
     private List<String> ignoredWeapons = new ArrayList<>();
+    private List<String> ignoredRoles = new ArrayList<>();
 
     public MasteryConfig() {}
 
@@ -59,5 +64,9 @@ public class MasteryConfig {
 
     public List<String> getIgnoredWeapons() {
         return ignoredWeapons;
+    }
+
+    public List<String> getIgnoredRoles() {
+        return ignoredRoles;
     }
 }
