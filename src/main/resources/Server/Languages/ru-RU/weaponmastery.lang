@@ -1,13 +1,13 @@
 search.placeholder = Введите название оружия
 
 mastery.tier.0.desc = Увеличивает урон на <color is="#1eab1e">15%</color><color is="#888888"> (50/500)</color>
-mastery.tier.1.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.2</color> за каждый удар <color is="#888888"> (100/500)</color>
+mastery.tier.1.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.2</color> за каждый удар<color is="#888888"> (100/500)</color>
 mastery.tier.2.desc = Увеличивает урон на <color is="#1eab1e">20%</color> <color is="#888888"> (150/500)</color>
-mastery.tier.3.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.4</color> за каждый удар <color is="#888888"> (200/500)</color>
+mastery.tier.3.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.4</color> за каждый удар<color is="#888888"> (200/500)</color>
 mastery.tier.4.desc = Увеличивает урон на <color is="#1eab1e">30%</color><color is="#888888"> (250/500)</color>
-mastery.tier.5.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.5</color> за каждый удар <color is="#888888"> (300/500)</color>
+mastery.tier.5.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.5</color> за каждый удар<color is="#888888"> (300/500)</color>
 mastery.tier.6.desc = Увеличивает урон на <color is="#1eab1e">50%</color><color is="#888888"> (400/500)</color>
-mastery.tier.7.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.8</color> за каждый удар <color is="#888888"> (500/500)</color>
+mastery.tier.7.desc = Увеличивает сигнатурную энергию на <color is="#1eab1e">0.8</color> за каждый удар<color is="#888888"> (500/500)</color>
 
 mastery.notification.title = Навык улучшен ({current}/{maximum})
 mastery.notification.tier.0.desc = Увеличен урон на 15%
