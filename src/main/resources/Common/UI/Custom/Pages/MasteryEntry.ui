@@ -29,7 +29,7 @@ Group {
 
             Group {
                 Background: "../Pages/Memories/MemoriesProgress/MemoriesBarBg.png";
-                Anchor: (Left: 0, Height: 22, Width: 300, Bottom: 2);
+                Anchor: (Left: 0, Height: 22, Width: 366, Bottom: 2);
                 Padding: (Full: 4);
 
                 ProgressBar #MasteryProgress {

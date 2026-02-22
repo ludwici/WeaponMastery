@@ -23,6 +23,7 @@ import java.util.Map;
 public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEventData> {
 
     private String searchQuery;
+    private final int PROGRESSBAR_WIDTH = 366;
 
     public WeaponMasteryPage(@NonNullDecl PlayerRef playerRef) {
         super(playerRef, CustomPageLifetime.CanDismiss, MasteryWeaponEventData.CODEC);
@@ -77,7 +78,7 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
 //            uiCommandBuilder.set(selector + "#MasteryProgressTexture.Value", value);
             {
                 Anchor anchor = new Anchor();
-                anchor.setWidth(Value.of(entry.getValue() * 300 / 500));
+                anchor.setWidth(Value.of(entry.getValue() * PROGRESSBAR_WIDTH / 500));
                 anchor.setLeft(Value.of(-3));
                 uiCommandBuilder.setObject(selector + "#MasteryProgressTexture.Anchor", anchor);
             }
@@ -87,7 +88,7 @@ public class WeaponMasteryPage extends InteractiveCustomUIPage<MasteryWeaponEven
                 uiCommandBuilder.append(selector + "#TiersPanel", "Pages/TierEntry.ui");
                 String tierSelector = selector + "#TiersPanel[" + tier + "]";
                 Anchor anchor = new Anchor();
-                int left = MasteryComponent.tierByProgress.get(tier) * 300 / 500 - 10;
+                int left = MasteryComponent.tierByProgress.get(tier) * PROGRESSBAR_WIDTH / 500 - 10;
                 anchor.setBottom(Value.of(0));
                 anchor.setWidth(Value.of(20));
                 anchor.setHeight(Value.of(20));
