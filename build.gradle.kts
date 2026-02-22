@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.ludwici.weaponmastery"
-version = "1.5.0"
+version = "1.6.0"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 hytale {
     allowOp.set(true)
     patchline.set("release")
-    includeLocalMods.set(true)
+    includeLocalMods.set(false)
     manifest {
         version.set(project.version.toString())
         author("ludwici")
