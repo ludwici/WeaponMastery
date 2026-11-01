@@ -14,6 +14,7 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 public class WeaponMasteryOpenCommand extends AbstractPlayerCommand {
     public WeaponMasteryOpenCommand(@NonNullDecl String name, @NonNullDecl String description, boolean requiresConfirmation) {
         super(name, description, requiresConfirmation);
+        requireNoPermission();
     }
 
     @Override
@@ -23,8 +24,4 @@ public class WeaponMasteryOpenCommand extends AbstractPlayerCommand {
         player.getPageManager().openCustomPage(ref, store, page);
     }
 
-    @Override
-    protected boolean canGeneratePermission() {
-        return false;
-    }
 }
