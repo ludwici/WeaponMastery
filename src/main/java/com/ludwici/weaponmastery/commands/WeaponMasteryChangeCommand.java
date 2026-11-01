@@ -9,7 +9,7 @@ import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
-import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
@@ -30,11 +30,9 @@ public class WeaponMasteryChangeCommand extends AbstractPlayerCommand {
 
     @Override
     protected void execute(@NonNullDecl CommandContext commandContext, @NonNullDecl Store<EntityStore> store, @NonNullDecl Ref<EntityStore> ref, @NonNullDecl PlayerRef playerRef, @NonNullDecl World world) {
-        Player player = store.getComponent(ref, Player.getComponentType());
-
         PlayerRef targetRef = Universe.get().getPlayerByUsername(playerName.get(commandContext), NameMatching.EXACT);
         if (targetRef == null) {
-            player.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_player"));
+            commandContext.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_player"));
             return;
         }
 
@@ -43,21 +41,29 @@ public class WeaponMasteryChangeCommand extends AbstractPlayerCommand {
         ItemStack itemStack;
 
         if (weaponID.equals("current")) {
-            Player targetPlayer = store.getComponent(targetRef.getReference(), Player.getComponentType());
-            itemStack = targetPlayer.getInventory().getItemInHand();
-            weaponID = itemStack.getItemId();
+            Ref<EntityStore> targetEntityRef = targetRef.getReference();
+            if (targetEntityRef == null || !targetEntityRef.isValid()) {
+                commandContext.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_player"));
+                return;
+            }
+
+            itemStack = InventoryComponent.getItemInHand(store, targetEntityRef);
         } else {
             itemStack = new ItemStack(weaponID);
         }
 
         if (itemStack == null || !itemStack.isValid()) {
-            player.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_item"));
+            commandContext.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_item"));
             return;
+        }
+
+        if (weaponID.equals("current")) {
+            weaponID = itemStack.getItemId();
         }
 
         ItemWeapon weapon = itemStack.getItem().getWeapon();
         if (weapon == null) {
-            player.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_weapon"));
+            commandContext.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_weapon"));
             return;
         }
 
