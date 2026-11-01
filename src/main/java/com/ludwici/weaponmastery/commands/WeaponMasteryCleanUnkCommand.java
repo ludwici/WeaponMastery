@@ -15,6 +15,7 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 public class WeaponMasteryCleanUnkCommand extends AbstractPlayerCommand {
     public WeaponMasteryCleanUnkCommand(@NonNullDecl String name, @NonNullDecl String description) {
         super(name, description, false);
+        requireNoPermission();
     }
 
     @Override
@@ -28,8 +29,4 @@ public class WeaponMasteryCleanUnkCommand extends AbstractPlayerCommand {
         component.progress.entrySet().removeIf(entry -> new ItemStack(entry.getKey()).getItem() == Item.UNKNOWN);
     }
 
-    @Override
-    protected boolean canGeneratePermission() {
-        return false;
-    }
 }

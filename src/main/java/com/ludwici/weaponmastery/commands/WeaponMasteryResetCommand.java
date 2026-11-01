@@ -8,7 +8,6 @@ import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
-import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.World;
@@ -25,11 +24,9 @@ public class WeaponMasteryResetCommand extends AbstractPlayerCommand {
 
     @Override
     protected void execute(@NonNullDecl CommandContext commandContext, @NonNullDecl Store<EntityStore> store, @NonNullDecl Ref<EntityStore> ref, @NonNullDecl PlayerRef playerRef, @NonNullDecl World world) {
-        Player player = store.getComponent(ref, Player.getComponentType());
-
         PlayerRef targetRef = Universe.get().getPlayerByUsername(playerName.get(commandContext), NameMatching.EXACT);
         if (targetRef == null) {
-            player.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_player"));
+            commandContext.sendMessage(Message.translation("weaponmastery.commands.wm_change.errors.no_player"));
             return;
         }
 
