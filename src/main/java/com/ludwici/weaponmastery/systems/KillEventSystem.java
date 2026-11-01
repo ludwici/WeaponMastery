@@ -5,6 +5,7 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.damage.*;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -48,8 +49,8 @@ public class KillEventSystem extends DeathSystems.OnDeathSystem {
             return;
         }
 
-        ItemStack weapon = attacker.getInventory().getItemInHand();
-        if (weapon == null || weapon.getItem().getWeapon() == null) {
+        ItemStack weapon = InventoryComponent.getItemInHand(store, sourceRef);
+        if (weapon == null || !weapon.isValid() || weapon.getItem().getWeapon() == null) {
             return;
         }
 
