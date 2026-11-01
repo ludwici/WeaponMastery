@@ -5,7 +5,7 @@
     "Version": "1.7.0",
     "Main": "com.ludwici.weaponmastery.WeaponMastery",
     "IncludesAssetPack": true,
-    "ServerVersion": "0.7.5",
+    "ServerVersion": "=0.7.5",
     "Authors": [
         {
             "Name": "ludwici"

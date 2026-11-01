@@ -23,6 +23,7 @@ hytale {
     includeLocalMods.set(false)
     manifest {
         version.set(project.version.toString())
+        serverVersion.set("=0.7.5")
         author("ludwici")
     }
 }
