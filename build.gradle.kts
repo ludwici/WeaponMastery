@@ -1,17 +1,23 @@
 plugins {
     id("java")
     id("app.ultradev.hytalegradle") version "2.0.2"
-
 }
 
 group = "com.ludwici.weaponmastery"
-version = "1.6.0"
+version = "1.7.0"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 hytale {
+    version.set("0.7.5")
     allowOp.set(true)
     patchline.set("release")
     includeLocalMods.set(false)

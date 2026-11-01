@@ -14,7 +14,7 @@ import java.util.*;
 
 public class MasteryComponent implements Component<EntityStore> {
     public Map<String, Integer> progress;
-    public static int MAX_PROGRESS_VALUE = 500;
+    public static final int MAX_PROGRESS_VALUE = 500;
 
     public static final NavigableMap<Integer, Integer> tierByProgress = new TreeMap<>(Map.of(
           0, 50,
@@ -67,7 +67,9 @@ public class MasteryComponent implements Component<EntityStore> {
     }
 
     public void addProgress(String weaponId, int value) {
-        progress.merge(weaponId, value, (oldVal, add) -> Math.max(0, Math.min(MAX_PROGRESS_VALUE, oldVal + add)));
+        int previous = progress.getOrDefault(weaponId, 0);
+        int updated = (int) Math.clamp((long) previous + value, 0L, (long) MAX_PROGRESS_VALUE);
+        progress.put(weaponId, updated);
     }
 
     public int getProgress(String weaponId) {
