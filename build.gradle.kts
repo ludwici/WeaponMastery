@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.ludwici.weaponmastery"
-version = "1.7.0"
+version = "1.7.1"
 
 java {
     toolchain {
@@ -17,13 +17,13 @@ repositories {
 }
 
 hytale {
-    version.set("0.7.5")
+    version.set("0.7.6")
     allowOp.set(true)
     patchline.set("release")
     includeLocalMods.set(false)
     manifest {
         version.set(project.version.toString())
-        serverVersion.set("=0.7.5")
+        serverVersion.set(">=0.7.6")
         author("ludwici")
     }
 }

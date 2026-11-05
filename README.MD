@@ -1,3 +1,5 @@
+**Compatibility:** Hytale **0.7.6+** (`release` patchline). WeaponMastery is built against Hytale Server 0.7.6; later server releases are allowed by the manifest, but changes to the Hytale API may require an updated mod build.
+
 By killing creatures you will improve your weapon mastery using a specific weapon. Each weapon has its own mastery scale from 1 to 500. The higher the mastery, the better bonuses will be and the more difficult it will be to improve your mastery.
 
 ![image.png](https://i.postimg.cc/wTxqT3TK/Screenshot-2026-01-20-023905.jpg)
